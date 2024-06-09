@@ -25,24 +25,25 @@
 
 ТЕСТЫ МЕТОДА get_books_with_specific_genre (переменная genre)
 22) test_get_books_with_specific_genre_fantasy_true : Выводит список книг с определённым жанром
-23) test_get_books_with_specific_genre_genre_of_books_is_not_specified_empty_list : Выведет пустой список если в books_genre у книг не указан жанр
-24) test_get_books_with_specific_genre_no_books_in_books_genre_empty_list : Выведит пустой список если книг в books_genre нет
+23) test_get_books_with_specific_genre_genre_of_book_is_not_in_books_genre_empty_list : Выведет пустой список если в books_genre у книг не указан жанр
+24) test_get_books_with_specific_genre_genre_of_book_is_not_in_genre_empty_list : Выведит пустой список, если жанр отсутствует в списке genre
+25) test_get_books_with_specific_genre_no_books_in_books_genre_empty_list : Выведит пустой список если книг в books_genre нет
 
 ТЕСТЫ МЕТОДА get_books_genre (переменной нет)
-25) test_get_books_genre_new_book_true : Выводит текущий словарь - с добавленной книгой
+26) test_get_books_genre_new_book_true : Выводит текущий словарь - с добавленной книгой
 
 ТЕСТЫ МЕТОДА get_books_for_children (переменной нет)
-26) test_get_books_for_children_all_genres_from_genre_books_horror_and_detective_not_included : Вернется список книг, жанр которых не в genre_age_rating и в genre
-27) test_get_books_for_children_all_genres_not_from_genre_books_all_not_included : Не вернет список книг, жанр которых не в genre_age_rating и не в genre
+27) test_get_books_for_children_all_genres_from_genre_books_horror_and_detective_not_included : Вернется список книг, жанр которых не в genre_age_rating и в genre
+28) test_get_books_for_children_all_genres_not_from_genre_books_all_not_included : Не вернет список книг, жанр которых не в genre_age_rating и не в genre
 
 ТЕСТЫ МЕТОДА add_book_in_favorites (переменная name)
-28) test_add_book_in_favorites_book_in_books_genre_and_not_in_favorites_true : Добавляет книгу в избранное, если книга находится в словаре books_genre и ее нет в favorites
-29) test_add_book_in_favorites_book_not_in_books_genre_and_favorites_true : Нельзя добавить книгу, если она не находится в словаре и ее нет в favorites 
-30) test_add_book_in_favorites_add_same_book_one_book : Повторно добавить книгу в избранное нельзя
+29) test_add_book_in_favorites_book_in_books_genre_and_not_in_favorites_true : Добавляет книгу в избранное, если книга находится в словаре books_genre и ее нет в favorites
+30) test_add_book_in_favorites_book_not_in_books_genre_and_favorites_true : Нельзя добавить книгу, если она не находится в словаре и ее нет в favorites 
+31) test_add_book_in_favorites_add_same_book_one_book : Повторно добавить книгу в избранное нельзя
 
 ТЕСТЫ МЕТОДА delete_book_from_favorites (переменная name)
-31) test_delete_book_from_favorites_book_in_favorites_delete_book : Можно удалить книгу из избранного, если она там есть
-32) test_delete_book_from_favorites_book_not_in_favorites_book_has_not_deleted : Нельзя удалить книгу из избранного, если ее там нет
+32) test_delete_book_from_favorites_book_in_favorites_delete_book : Можно удалить книгу из избранного, если она там есть
+33) test_delete_book_from_favorites_book_not_in_favorites_book_has_not_deleted : Нельзя удалить книгу из избранного, если ее там нет
 
 ТЕСТЫ МЕТОДА get_list_of_favorites_books (переменной нет)
-33) test_get_list_of_favorites_books_new_favorites_books_true : Выводит текущий список избранных книг - с добавленной книгой
+34) test_get_list_of_favorites_books_new_favorites_books_true : Выводит текущий список избранных книг - с добавленной книгой

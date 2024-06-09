@@ -124,7 +124,7 @@ class TestBooksCollector:
         assert fantasy_list == ['Начало зомби', 'Назад в будущее зомби']
 
     # 23.Выведит пустой список, если у книг в books_genre не указан жанр
-    def test_get_books_with_specific_genre_genre_of_books_is_not_specified_empty_list(self):
+    def test_get_books_with_specific_genre_genre_of_book_is_not_in_books_genre_empty_list(self):
         collector = BooksCollector()
         collector.add_new_book('Начало зомби')
         collector.add_new_book('Назад в будущее зомби')
@@ -139,21 +139,37 @@ class TestBooksCollector:
         fantasy_list = collector.get_books_with_specific_genre('Фантастика')
         assert fantasy_list == []
 
-    # 24. Выведит пустой список, если книг в books_genre нет
+    # 24. Выведит пустой список, если жанр отсутствует в списке genre
+    def test_get_books_with_specific_genre_genre_of_book_is_not_in_genre_empty_list(self):
+        collector = BooksCollector()
+        collector.add_new_book('Назад в будущее зомби')
+        collector.set_book_genre('Назад в будущее зомби', 'Фантастика')
+        collector.add_new_book('Чужой зомби')
+        collector.set_book_genre('Чужой зомби', 'Ужасы')
+        collector.add_new_book('Достать ножи с зомби')
+        collector.set_book_genre('Достать ножи с зомби', 'Детективы')
+        collector.add_new_book('Зомби Клаус')
+        collector.set_book_genre('Зомби Клаус', 'Мультфильмы')
+        collector.add_new_book('Один дома с зомби')
+        collector.set_book_genre('Один дома с зомби', 'Комедии')
+        fantasy_list = collector.get_books_with_specific_genre('Аниме')
+        assert fantasy_list == []
+
+    # 25. Выведит пустой список, если книг в books_genre нет
     def test_get_books_with_specific_genre_no_books_in_books_genre_empty_list(self):
         collector = BooksCollector()
         fantasy_list = collector.get_books_with_specific_genre('Фантастика')
         assert fantasy_list == []
 
         # (5) ТЕСТЫ МЕТОДА get_books_genre
-    # 25. Выводит текущий словарь - с добавленной книгой
+    # 26. Выводит текущий словарь - с добавленной книгой
     def test_get_books_genre_new_book_true(self):
         collector = BooksCollector()
         collector.add_new_book('Гордость и зомби')
         assert collector.get_books_genre() == {'Гордость и зомби': ''}
 
         # (6) ТЕСТЫ МЕТОДА get_books_for_children
-    # 26. Вернется список книг, жанр которых не в genre_age_rating и в genre
+    # 27. Вернется список книг, жанр которых не в genre_age_rating и в genre
     def test_get_books_for_children_all_genres_from_genre_books_horror_and_detective_not_included(self):
         collector = BooksCollector()
         collector.add_new_book('Начало зомби')
@@ -169,7 +185,7 @@ class TestBooksCollector:
         books_for_children_list = collector.get_books_for_children()
         assert books_for_children_list == ['Начало зомби', 'Зомби Клаус', 'Один дома с зомби']
 
-    # 27. Не вернет список книг, жанр которых не в genre_age_rating и не в genre
+    # 28. Не вернет список книг, жанр которых не в genre_age_rating и не в genre
     def test_get_books_for_children_all_genres_not_from_genre_books_all_not_included(self):
         collector = BooksCollector()
         collector.add_new_book('Начало зомби')
@@ -186,20 +202,20 @@ class TestBooksCollector:
         assert books_for_children_list == []
 
         # (7) ТЕСТЫ МЕТОДА add_book_in_favorites
-    # 28. Можно добавить книгу в избранное, если книга находится в словаре books_genre и ее нет в списке favorites
+    # 29. Можно добавить книгу в избранное, если книга находится в словаре books_genre и ее нет в списке favorites
     def test_add_book_in_favorites_book_in_books_genre_and_not_in_favorites_true(self):
         collector = BooksCollector()
         collector.add_new_book('Один дома с зомби')
         collector.add_book_in_favorites('Один дома с зомби')
         assert collector.get_list_of_favorites_books() == ['Один дома с зомби']
 
-    # 29. Нельзя добавить книгу, если ее нет в словаре books_genre и списке favorites
+    # 30. Нельзя добавить книгу, если ее нет в словаре books_genre и списке favorites
     def test_add_book_in_favorites_book_not_in_books_genre_and_favorites_true(self):
         collector = BooksCollector()
         collector.add_book_in_favorites('Один дома с зомби')
         assert collector.get_list_of_favorites_books() == []
 
-    # 30. Повторно добавить книгу в избранное нельзя
+    # 31. Повторно добавить книгу в избранное нельзя
     def test_add_book_in_favorites_add_same_book_one_book(self):
         collector = BooksCollector()
         collector.add_new_book('Один дома с зомби')
@@ -208,7 +224,7 @@ class TestBooksCollector:
         assert len(collector.get_list_of_favorites_books()) == 1
 
         # (8) ТЕСТЫ МЕТОДА delete_book_from_favorites
-    # 31. Можно удалить книгу из избранного, если она там есть
+    # 32. Можно удалить книгу из избранного, если она там есть
     def test_delete_book_from_favorites_book_in_favorites_delete_book(self):
         collector = BooksCollector()
         collector.add_new_book('Один дома с зомби')
@@ -216,7 +232,7 @@ class TestBooksCollector:
         collector.delete_book_from_favorites('Один дома с зомби')
         assert len(collector.get_list_of_favorites_books()) == 0
 
-    # 32. Нельзя удалить книгу из избранного, если ее там нет
+    # 33. Нельзя удалить книгу из избранного, если ее там нет
     def test_delete_book_from_favorites_book_not_in_favorites_book_has_not_deleted(self):
         collector = BooksCollector()
         collector.add_new_book('Один дома с зомби')
@@ -225,9 +241,11 @@ class TestBooksCollector:
         assert len(collector.get_list_of_favorites_books()) == 1
 
         # (9) ТЕСТЫ МЕТОДА get_list_of_favorites_books
-    # 33. Выводит текущий список избранных книг - с добавленной книгой
+    # 34. Выводит текущий список избранных книг - с добавленной книгой
     def test_get_list_of_favorites_books_new_favorites_books_true(self):
         collector = BooksCollector()
         collector.add_new_book('Один дома с зомби')
+        collector.add_new_book('Чужой зомби')
         collector.add_book_in_favorites('Один дома с зомби')
-        assert collector.get_list_of_favorites_books() == ['Один дома с зомби']
+        collector.add_book_in_favorites('Чужой зомби')
+        assert collector.get_list_of_favorites_books() == ['Один дома с зомби', 'Чужой зомби']
